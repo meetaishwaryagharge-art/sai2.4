@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Shree Sai Computers</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        
+         :root {
+            /* Updated Color Palette */
+            --brand-Deep-Purple : #2E0F5C	(46, 15, 92); /* Deep Sky Blue */
+            --brand-Vibrant-Yellow: #FFD700	(255, 215, 0);     /* Classic Gold */
+            --brand-dark: #111111;
+            --text-gray: #444;
+            --light-bg: #f9f9f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--deep-black); 
+            font-family:'Open Sans', sans-serif; 
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ========== NAVBAR ========== */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: #ffffff;
+            padding: 0 8%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 68px;
+            border-bottom: 3px solid  #2E0F5C;
+            box-shadow: 0 2px 20px rgba(0, 191, 255, 0.12);
+            transition: 0.4s;
+        }
+
+        /* Logo */
+       .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 2.5px;
+            color: var(--brand-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .logo-text span { color:  #2E0F5C; }
+        /* Nav list */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            align-items: center;
+            height: 100%;
+        }
+        .nav-links > li {
+            height: 68px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .nav-links > li > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 0 18px;
+            height: 100%;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.88rem;
+            letter-spacing: 0.5px;
+            color: #2c2c2c;
+            transition: color 0.25s;
+            white-space: nowrap;
+        }
+        .nav-links > li > a:hover,
+        .nav-links > li > a.active-link {
+            color:  #2E0F5C;
+        }
+        .nav-links > li > a.active-link {
+            border-bottom: 3px solid  #2E0F5C;
+            margin-bottom: -3px;
+        }
+        .nav-links > li > a i.fa-chevron-down {
+            font-size: 0.65rem;
+            opacity: 0.6;
+            transition: transform 0.25s;
+        }
+        .nav-links > li.dropdown:hover > a i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        /* ========== DROPDOWN LEVEL 1 ========== */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #ffffff;
+            min-width: 220px;
+            border-radius: 0 0 10px 10px;
+            border-top: 3px solid  #2E0F5C;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.13);
+            padding: 6px 0;
+            display: none;
+            z-index: 1000;
+            list-style: none;
+        }
+        .dropdown:hover > .dropdown-menu { display: block; }
+
+        .dropdown-menu > li { position: relative; }
+        .dropdown-menu > li > a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 18px;
+            font-size: 0.875rem;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            color: #2c2c2c;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
+        }
+        .dropdown-menu > li > a:hover {
+            background: #f0faff;
+            color:  #2E0F5C;
+            padding-left: 22px;
+        }
+        .dropdown-menu > li > a i.fa-chevron-right { font-size: 0.6rem; opacity: 0.5; }
+        .dropdown-menu > li + li { border-top: 1px solid #f2f2f2; }
+
+        /* ========== SUBMENU LEVEL 2 ========== */
+        .submenu { position: relative; }
+        .submenu-menu {
+            position: absolute;
+            top: -6px;
+            left: 100%;
+            background: #ffffff;
+            min-width: 220px;
+            border-radius: 0 10px 10px 10px;
+            border-top: 3px solid  #FFD700;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.13);
+            padding: 6px 0;
+            display: none;
+            list-style: none;
+            z-index: 1001;
+        }
+        .submenu:hover > .submenu-menu { display: block; }
+
+        .submenu-menu > li { position: relative; }
+        .submenu-menu > li > a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 18px;
+            font-size: 0.875rem;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            color: #2c2c2c;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
+        }
+        .submenu-menu > li > a:hover {
+            background: #fffbf0;
+            color: var(--brand-gold);
+            padding-left: 22px;
+        }
+        .submenu-menu > li > a i.fa-chevron-right { font-size: 0.6rem; opacity: 0.5; }
+        .submenu-menu > li + li { border-top: 1px solid #f9f9f9; }
+
+        /* ========== SUBMENU LEVEL 3 ========== */
+        .submenu-item { position: relative; }
+        .submenu-level3 {
+            position: absolute;
+            top: -6px;
+            left: 100%;
+            background: #ffffff;
+            min-width: 180px;
+            border-radius: 0 10px 10px 10px;
+            border-top: 3px solid var(--brand-dark);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.13);
+            padding: 6px 0;
+            display: none;
+            list-style: none;
+            z-index: 1002;
+        }
+        .submenu-item:hover > .submenu-level3 { display: block; }
+
+        .submenu-level3 > li > a {
+            display: block;
+            padding: 9px 18px;
+            font-size: 0.85rem;
+            font-family: 'Open Sans', sans-serif;
+            color: #444;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, padding-left 0.2s;
+        }
+        .submenu-level3 > li > a:hover {
+            background: #f0faff;
+            color: #2E0F5C;
+            padding-left: 24px;
+        }
+
+        /* Dropdown fade animation */
+        .dropdown-menu, .submenu-menu, .submenu-level3 {
+            animation: dropFade 0.22s ease;
+        }
+        @keyframes dropFade {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile toggle button */
+        .menu-toggle {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--brand-dark);
+            padding: 6px;
+            border: 1.5px solid #ddd;
+            border-radius: 6px;
+            line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            nav { padding: 0 5%; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                flex-direction: column;
+                text-align: left;
+                border-bottom: 3px solid #2E0F5C;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+                padding: 10px 0;
+            }
+            .nav-links > li { height: auto; padding: 2px 0; }
+            .nav-links > li > a { padding: 12px 25px; height: auto; border-bottom: none; }
+            .nav-links.active { display: flex; }
+            .dropdown-menu, .submenu-menu, .submenu-level3 {
+                position: static;
+                box-shadow: none;
+                border-top: none;
+                border-radius: 0;
+                padding-left: 18px;
+                display: none;
+                animation: none;
+            }
+            .dropdown:hover > .dropdown-menu,
+            .submenu:hover > .submenu-menu,
+            .submenu-item:hover > .submenu-level3 { display: none; }
+            .page-header { height: 40vh; }
+            .page-header h1 { font-size: 2.2rem; }
+        }
+
+        /* --- PAGE HEADER --- */
+        .page-header {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 30, 60, 0.75), rgba(0, 30, 60, 0.75)), url('data:image/jpeg;base64,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');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; border-bottom: 5px solid  #FFD700;
+            margin-top: 68px; color: white;
+        }
+        .page-header h1 { font-family: 'Open Sans', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 15px; font-weight: 700; }
+        .page-header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; font-weight: 300; color:  #FFD700; }
+
+        /* --- SERVICE SECTIONS --- */
+        .section-padding { padding: 80px 0; }
+        .line { width: 70px; height: 4px; background:  #FFD700; margin-bottom: 25px; }
+        .service-card { border: none; transition: 0.4s; margin-bottom: 30px; height: 100%; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 4px solid  #FFD700; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0, 191, 255, 0.15); border-bottom-color:  #2E0F5C; }
+        .service-card img { height: 250px; object-fit: cover; }
+        
+        .btn-brand { 
+            background: transparent; border: 2px solid  #2E0F5C; color: #2E0F5C;
+            padding: 10px 25px; font-weight: bold; text-transform: uppercase; transition: 0.3s;
+            display: inline-block; text-decoration: none; border-radius: 5px; margin-top: 15px;
+        }
+        .btn-brand:hover { background:  #FFD700; border-color: #FFD700; color: white; }
+
+        /* --- INDUSTRY GRID ---
+        .industry-box { text-align: center; padding: 30px; background: #fff; border: 1px solid #eee; border-radius: 10px; transition: 0.3s; }
+        .industry-box i { font-size: 2.5rem; color: var(--brand-sky-blue); margin-bottom: 15px; }
+        .industry-box:hover { background: var(--brand-sky-blue); color: white; transform: scale(1.05); }
+        .industry-box:hover i { color: white; } */
+
+      
+        /* --- FOOTER --- */
+        footer { background: var(--brand-dark); padding: 80px 8% 30px; color: #fff; border-top: 4px solid  #FFD700; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; }
+        .f-col h4 { font-family:'Open Sans', sans-serif; color:  #2E0F5C; margin-bottom: 25px; font-weight: 700; text-transform: uppercase; }
+        .f-col p, .f-col li { color: #aaa; margin-bottom: 12px; font-size: 15px; list-style: none; }
+        .f-col i { color:  #FFD700; margin-right: 12px; width: 20px; text-align: center; }
+
+.logo-text img {
+    max-height: 45px;
+    object-fit: contain;
+}
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+         <img src="logo.jpeg" alt="Hexastra Infotech Logo" style="height: 40px; width: auto;">
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    
+    
+     <li class="dropdown">
+    <a href="product.html" >
+        Product <i class="fas fa-chevron-down"></i>
+    </a>
+
+    <ul class="dropdown-menu">
+
+        <!-- Security Cameras -->
+        <li class="submenu">
+            <a href="#">Security Cameras <i class="fas fa-chevron-right"></i></a>
+
+            <ul class="submenu-menu">
+
+                <li class="submenu-item">
+                    <a href="#">Network Cameras <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">2MP</a></li>
+                        <li><a href="#">4MP</a></li>
+                        <li><a href="#">5MP</a></li>
+                        <li><a href="#">8MP</a></li>
+                        <li><a href="#">Project Models</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu-item">
+                    <a href="#">Network Video Recorder <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">4Ch</a></li>
+                        <li><a href="#">8Ch</a></li>
+                        <li><a href="#">16Ch</a></li>
+                        <li><a href="#">32Ch</a></li>
+                        <li><a href="#">64Ch</a></li>
+                        <li><a href="#">128Ch</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu-item">
+                    <a href="#">Analog HD Camera <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">2.4MP</a></li>
+                        <li><a href="#">5MP</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu-item">
+                    <a href="#">Digital Video Recorder <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">4Ch</a></li>
+                        <li><a href="#">8Ch</a></li>
+                        <li><a href="#">16Ch</a></li>
+                        <li><a href="#">32Ch</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
+
+        <!-- Biometric System -->
+        <li class="submenu">
+            <a href="#">Biometric System <i class="fas fa-chevron-right"></i></a>
+
+            <ul class="submenu-menu">
+
+                <li class="submenu-item">
+                    <a href="#">Fingerprint <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">N-Series</a></li>
+                        <li><a href="#">V-Series</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu-item">
+                    <a href="#">Face <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">N-Series</a></li>
+                        <li><a href="#">AI-Series</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu-item">
+                    <a href="#">Card <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">Attendance & Access Control</a></li>
+                        <li><a href="#">Access Control</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu-item">
+                    <a href="#">Controller <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">C22</a></li>
+                        <li><a href="#">C32</a></li>
+                        <li><a href="#">C332</a></li>
+                        <li><a href="#">C334</a></li>
+                    </ul>
+                </li>
+
+                <li class="submenu-item">
+                    <a href="#">Thermometer <i class="fas fa-chevron-right"></i></a>
+                    <ul class="submenu-level3">
+                        <li><a href="#">BM-IRT</a></li>
+                        <li><a href="#">BM-TDA</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>
+
+
+        <li><a href="#">Laptops & PCs</a></li>
+        <li><a href="#">Telecom System</a></li>
+        <li><a href="#">Network Gear</a></li>
+        <li><a href="#">Business Software</a></li>
+        <li><a href="#">IT Accessories</a></li>
+
+    </ul>
+</li>
+
+    <li class="dropdown">
+        <a href="service.html" class="active-link" >Services <i class="fas fa-chevron-down"></i></a>
+        <ul class="dropdown-menu">
+            <li><a href="#">CCTV Surveillance</a></li>
+            <li><a href="#">Computers & Laptops</a></li>
+            <li><a href="#">Printers & Accessories</a></li>
+            <li><a href="#">Access Control</a></li>
+            <li><a href="#">Cyber Security</a></li>
+        </ul>
+    </li>
+<li><a href="aboutus.html">About</a></li>
+    <li><a href="contactus.html">Contact</a></li>
+</ul>
+    </nav>
+    <header class="page-header">
+        <div class="container text-center" data-aos="zoom-out">
+            <h1>OUR SERVICES</h1>
+            <p>End-to-End IT Solutions Tailored for Your Business Needs</p>
+            <a href="contactus.html" class="btn-brand" style="color: white; border-color: white;">Get a Free Consultation</a>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 offset-lg-2 text-center" data-aos="fade-up">
+                    <h2 class="mb-4"><span>Complete Tech Solutions</span></h2>
+                    <p class="text-muted lead">At Shree Sai Computers, we specialize in providing complete IT infrastructure, security systems, and technology services designed to enhance business efficiency, reliability, and safety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mb-5">
+       <div class="row gx-4 gy-4">
+            <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?q=80&w=600" class="card-img-top" alt="CCTV">
+                    <div class="card-body">
+                        <h5 class="fw-bold">CCTV Surveillance</h5>
+                        <ul class="small text-muted ps-0 list-unstyled">
+                            <li><i class="fas fa-check text-warning"></i> Installation & Maintenance</li>
+                            <li><i class="fas fa-check text-warning"></i> Residential & Commercial</li>
+                            <li><i class="fas fa-check text-warning"></i> Hikvision, CP Plus</li>
+                        </ul>
+                        <a href="contactus.html" class="btn-brand">Book Site Visit</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=600" class="card-img-top" alt="Computing">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Computers & Laptops</h5>
+                        <ul class="small text-muted ps-0 list-unstyled">
+                            <li><i class="fas fa-check text-warning"></i> Branded Sales (HP, Dell)</li>
+                            <li><i class="fas fa-check text-warning"></i> Upgrades & Assembling</li>
+                            <li><i class="fas fa-check text-warning"></i> AMC Support Available</li>
+                        </ul>
+                        <a href="contactus.html" class="btn-brand">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?q=80&w=600" class="card-img-top" alt="Printers">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Printers & Accessories</h5>
+                        <ul class="small text-muted ps-0 list-unstyled">
+                            <li><i class="fas fa-check text-warning"></i> Branded Sales & Consumables</li>
+                            <li><i class="fas fa-check text-warning"></i> Refilling & Servicing</li>
+                            <li><i class="fas fa-check text-warning"></i> Business Setup Support</li>
+                        </ul>
+                        <a href="contactus.html" class="btn-brand">Request Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card service-card">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600" class="card-img-top" alt="Access">
+                    <div class="card-body">
+                        <h5 class="fw-bold">Access Control</h5>
+                        <ul class="small text-muted ps-0 list-unstyled">
+                            <li><i class="fas fa-check text-warning"></i> Biometric Attendance</li>
+                            <li><i class="fas fa-check text-warning"></i> HR Software Integration</li>
+                            <li><i class="fas fa-check text-warning"></i> Door Access Solutions</li>
+                        </ul>
+                        <a href="contactus.html" class="btn-brand">Ask for Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="card service-card h-100">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=600" class="card-img-top" alt="Networking">
+                <div class="card-body">
+                    <h5 class="fw-bold">Cyber Security</h5>
+                    <ul class="small text-muted ps-0 list-unstyled">
+                        <li><i class="fas fa-check text-warning"></i> LAN/WAN Setup</li>
+                        <li><i class="fas fa-check text-warning"></i> Wi-Fi Zone Creation</li>
+                        <li><i class="fas fa-check text-warning"></i> Server Rack Management</li>
+                    </ul>
+                    <a href="contactus.html" class="btn-brand">Consult Expert</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="section-padding bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Expert Services</h2>
+            <p class="text-muted">Comprehensive IT, Security, Safety & Automation Solutions Under One Roof</p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Security & Surveillance -->
+            <div class="col-md-6">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-video text-warning me-2"></i>
+                            Security & Surveillance
+                        </h4>
+                        <ul class="list-unstyled text-muted">
+                            <li>📹 CCTV Surveillance Systems</li>
+                            <li>👆 Biometric Attendance Systems</li>
+                            <li>🚧 Boom Barriers & Access Control Solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cyber Security -->
+            <div class="col-md-6">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-shield-alt text-warning me-2"></i>
+                            Cyber Security Solutions
+                        </h4>
+                        <ul class="list-unstyled text-muted">
+                            <li>🖥️ Firewall & Network Security</li>
+                            <li>🛡️ Endpoint & Antivirus Protection</li>
+                            <li>☁️ Cloud & Email Security</li>
+                            <li>🔍 Vulnerability Assessment & Data Protection</li>
+                            <li>👨‍💻 Cyber Security Consulting & Monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fire & Safety -->
+            <div class="col-md-6">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-fire-extinguisher text-warning me-2"></i>
+                            Fire Fighting, Safety & Alarms
+                        </h4>
+                        <ul class="list-unstyled text-muted">
+                            <li>🔥 Fire Fighting & Suppression Systems</li>
+                            <li>🚒 Hydrant Systems</li>
+                            <li>🚨 Addressable Fire Alarm Systems</li>
+                            <li>💧 Sprinkler Systems</li>
+                            <li>📢 Public Address (PA) Sound Solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automation -->
+            <div class="col-md-6">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-microchip text-warning me-2"></i>
+                            Industrial & Smart Automation
+                        </h4>
+                        <ul class="list-unstyled text-muted">
+                            <li>⚙️ Industrial Automation Solutions</li>
+                            <li>⚡ Electrical & Instrumentation Services</li>
+                            <li>🏠 Smart Home Automation</li>
+                            <li>🏢 Smart Office Automation</li>
+                            <li>📱 Digital Control & Monitoring Systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Computers -->
+            <div class="col-md-6">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-laptop text-warning me-2"></i>
+                            Computers & Laptop Solutions
+                        </h4>
+                        <ul class="list-unstyled text-muted">
+                            <li>🖥️ Branded & Assembled Computers</li>
+                            <li>⚡ High Configuration Workstations</li>
+                            <li>💼 Business, Gaming & Professional Laptops</li>
+                            <li>🛠️ Sales, Service & Support</li>
+                            <li>🔧 Upgradation & Accessories</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Networking -->
+            <div class="col-md-6">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-network-wired text-warning me-2"></i>
+                            Connectivity & Networking
+                        </h4>
+                        <ul class="list-unstyled text-muted">
+                            <li>🌐 Internet Lease Lines</li>
+                            <li>📡 Broadband Solutions</li>
+                            <li>🔗 LAN & Wi-Fi Networking</li>
+                            <li>📶 Point-to-Point (P2P) Connectivity</li>
+                            <li>🌍 MPLS Wired & Wireless Solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enterprise -->
+            <div class="col-md-6">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-building text-warning me-2"></i>
+                            Enterprise IT Solutions
+                        </h4>
+                        <ul class="list-unstyled text-muted">
+                            <li>☁️ Business Email Solutions</li>
+                            <li>💼 Cloud Infrastructure Services</li>
+                            <li>📊 CRM & ERP Solutions</li>
+                            <li>💳 Razorpay Payment Gateway Integration</li>
+                            <li>⚡ Free Integration Support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Repairs -->
+            <div class="col-md-6">
+                <div class="card service-card h-100">
+                    <div class="card-body">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-tools text-warning me-2"></i>
+                            Repairs & Maintenance
+                        </h4>
+                        <ul class="list-unstyled text-muted">
+                            <li>💻 Chip-Level Laptop & Desktop Repair</li>
+                            <li>🖨️ Printer Repair & Maintenance</li>
+                            <li>💾 Hard Disk Data Recovery</li>
+                            <li>🛠️ AMC Contracts</li>
+                            <li>📋 Facility Management Services (FMS)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+  <!--  <section class="section-padding bg-light">
+        <div class="container text-center">
+            <h2 class="mb-5">Industry Solutions</h2>
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="industry-box">
+                        <i class="fas fa-industry"></i>
+                        <h6>Factories</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="industry-box">
+                        <i class="fas fa-school"></i>
+                        <h6>Education</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="industry-box">
+                        <i class="fas fa-hospital"></i>
+                        <h6>Hospitals</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="industry-box">
+                        <i class="fas fa-hotel"></i>
+                        <h6>Hotels</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="industry-box">
+                        <i class="fas fa-home"></i>
+                        <h6>Residential</h6>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="industry-box">
+                        <i class="fas fa-building"></i>
+                        <h6>Corporate</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+   
+
+    <footer style="background: #0a192f; color: #ffffff; padding: 80px 8% 30px; border-top: 4px solid  #FFD700;">
+        <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px;">
+            
+            <div class="f-col">
+                <h4 style="color:white; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; border-left: 3px solid #FFD700; padding-left: 15px;">Hexastra Infotech</h4>
+                <p style="color: #ccc; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                    Since 2016, we have been a trusted provider of turnkey IT and security infrastructure. We specialize in high-quality solutions for SMEs and corporate sectors across India.
+                </p>
+                <div class="amc-badge" style="display: inline-block; padding: 5px 12px; border: 1px solid #2E0F5C; color: white; font-size: 12px; font-weight: 700; border-radius: 4px;">
+                    ESTD. 2016
+                </div>
+            </div>
+
+            <div class="f-col">
+                <h4 style="color: white; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; border-left: 3px solid  #FFD700; padding-left: 15px;">Quick Links</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 12px;"><i class="fas fa-chevron-right" style="color:  #FFD700; font-size: 0.8rem; margin-right: 10px;"></i><a href="index.html" style="color: #ccc; text-decoration: none; transition: 0.3s;">Home</a></li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-chevron-right" style="color:  #FFD700; font-size: 0.8rem; margin-right: 10px;"></i><a href="aboutus.html" style="color: #ccc; text-decoration: none; transition: 0.3s;">About Us</a></li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-chevron-right" style="color:  #FFD700; font-size: 0.8rem; margin-right: 10px;"></i><a href="service.html" style="color: #ccc; text-decoration: none; transition: 0.3s;">Services</a></li>
+                    <li style="margin-bottom: 12px;"><i class="fas fa-chevron-right" style="color:  #FFD700; font-size: 0.8rem; margin-right: 10px;"></i><a href="contactus.html" style="color: #ccc; text-decoration: none; transition: 0.3s;">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="f-col">
+                <h4 style="color: white; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; border-left: 3px solid  #FFD700; padding-left: 15px;">Contact Info</h4>
+                <p style="color: #ccc; margin-bottom: 15px; display: flex; align-items: flex-start; font-size: 14px;"><i class="fas fa-map-marker-alt" style="color:  #FFD700; margin-right: 15px; margin-top: 5px;"></i> Naigaon East, Vasai, Maharashtra</p>
+                <p style="color: #ccc; margin-bottom: 15px; display: flex; align-items: center; font-size: 14px;"><i class="fas fa-envelope" style="color:  #FFD700; margin-right: 15px;"></i> connect@hexastra.in</p>
+                <p style="color: #ccc; margin-bottom: 15px; display: flex; align-items: center; font-size: 14px;"><i class="fas fa-phone-alt" style="color:  #FFD700; margin-right: 15px;"></i> +91 92244 67881</p>
+            </div>
+
+            <div class="f-col">
+                <h4 style="color: white; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; margin-bottom: 25px; border-left: 3px solid  #FFD700; padding-left: 15px;">Follow Us</h4>
+                <p style="color: #ccc; margin-bottom: 20px; font-size: 14px;">Connect with us for the latest IT updates and security solutions.</p>
+                <div class="social-links" style="display: flex; gap: 15px;">
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; color:white; text-decoration: none; transition: 0.3s; border: 1px solid #2E0F5C;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; text-decoration: none; transition: 0.3s; border: 1px solid  #2E0F5C;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" style="width: 38px; height: 38px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; text-decoration: none; transition: 0.3s; border: 1px solid #2E0F5C;"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="copyright" style="text-align: center; margin-top: 60px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 13px; color: #777; letter-spacing: 1px;">
+            © 2026 <span style="color: #FFD700; font-weight: 700;">Hexastra Infotech</span>. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        window.onscroll = function() {
+            var nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                nav.style.boxShadow = "0 5px 20px rgba(0,0,0,0.1)";
+            } else {
+                nav.style.boxShadow = "none";
+            }
+        };
+    </script>
+
+     <script>
+
+const menu = document.getElementById("mobile-menu");
+const nav = document.getElementById("nav-menu");
+
+menu.addEventListener("click", function(){
+nav.classList.toggle("active");
+});
+
+</script>
+</body>
+</html>
